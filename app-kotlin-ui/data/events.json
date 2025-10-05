@@ -1,0 +1,12 @@
+[ {
+  "id" : "cc9c4ec7-f9d5-478f-8c2a-2893944242ee",
+  "title" : "Sample Event",
+  "venue" : {
+    "id" : "v1",
+    "name" : "Main Hall",
+    "capacity" : 100
+  },
+  "start" : 1759681537.821001000,
+  "end" : 1759685137.821001000,
+  "capacity" : 80
+} ]
