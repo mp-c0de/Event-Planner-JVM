@@ -8,8 +8,16 @@ Multi-module Gradle project with Kotlin (domain/UI/persistence) and Scala 3 (alg
 - `algo-scala` — Scala 3 LTS API (`SlotFinderApi`) called from Kotlin.
 - `app-kotlin-ui` — JavaFX 21 app with two buttons.
 
-## Build & run
+## Build & run for Win!
+Ensure JDK 21+ is installed and on PATH. "java --version"
+```bash
+./gradlew :app-kotlin-ui:run
+```
+
+## Build & run for Mac!
 Ensure JDK 21+ is installed and on PATH.
 ```bash
 ./gradlew :app-kotlin-ui:run
 ```
+
+
