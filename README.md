@@ -11,7 +11,7 @@ Multi-module Gradle project with Kotlin (domain/UI/persistence) and Scala 3 (alg
 ## Build & run for Win!
 Ensure JDK 21+ is installed and on PATH. "java --version"
 ```bash
-./gradlew :app-kotlin-ui:run
+.\gradlew.bat :app-kotlin-ui:run
 ```
 
 ## Build & run for Mac!
