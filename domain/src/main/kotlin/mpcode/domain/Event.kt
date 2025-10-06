@@ -2,8 +2,7 @@ package mpcode.domain
 
 import java.time.Instant
 
-@JvmInline
-value class EventId(val value: String)
+typealias EventId = String  // simpler for JSON + Scala interop
 
 data class Venue(
     val id: String,
