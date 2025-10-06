@@ -14,3 +14,14 @@ Thumbs.db
 # Keep Gradle wrapper
 !gradle/wrapper/gradle-wrapper.jar
 !gradle/wrapper/gradle-wrapper.properties
+
+# Kotlin caches
+.kotlinc/
+.kotlin/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Runtime data created by the app
+data/
