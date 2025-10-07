@@ -18,21 +18,29 @@ class FileEventRepository(dataDir: Path) : EventRepository {
 
     init {
         file.parentFile?.mkdirs()
-        if (!file.exists()) {
-            file.writeText("[]")
-        }
+        if (!file.exists()) file.writeText("[]")
     }
 
     override fun save(event: Event) {
         val all = findAll().toMutableList()
         all.add(event)
-        mapper.writerWithDefaultPrettyPrinter().writeValue(file, all)
+        try {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, all)
+        } catch (e: Exception) {
+            println("ERROR events.json write: ${e.message}")
+            throw e
+        }
     }
 
     override fun findAll(): List<Event> {
         if (!file.exists()) return emptyList()
         val typeRef = object : TypeReference<List<Event>>() {}
-        return mapper.readValue(file, typeRef)
+        return try {
+            mapper.readValue(file, typeRef)
+        } catch (e: Exception) {
+            println("ERROR events.json read: ${e.message}")
+            emptyList()
+        }
     }
 
     override fun findById(id: EventId): Event? =
