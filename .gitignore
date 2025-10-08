@@ -26,3 +26,4 @@ Thumbs.db
 # Runtime data created by the app
 data/
 **/data/
+PROTECTION_*.txt
