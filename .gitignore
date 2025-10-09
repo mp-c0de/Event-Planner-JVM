@@ -1,29 +1,23 @@
-# Gradle / builds
-.gradle/
-**/build/
-out/
-
-# IntelliJ
+# IDE
 .idea/
 *.iml
 
-# OS junk
-.DS_Store
-Thumbs.db
+# Gradle
+.gradle/
+build/
+**/build/
 
-# Keep Gradle wrapper
-!gradle/wrapper/gradle-wrapper.jar
-!gradle/wrapper/gradle-wrapper.properties
-
-# Kotlin caches
+# Kotlin/Java
+out/
 .kotlinc/
 .kotlin/
 
-# OS junk
-.DS_Store
-Thumbs.db
+# JavaFX runtime and logs
+hs_err_pid*
+replay_pid*
 
-# Runtime data created by the app
-data/
+# App data (don’t commit runtime JSON)
 **/data/
-PROTECTION_*.txt
+
+# OS
+.DS_Store
