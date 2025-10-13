@@ -13,6 +13,9 @@ import mpcode.algo.SlotFinderApi
 import java.nio.file.Paths
 import java.time.Instant
 import java.util.UUID
+import javafx.scene.control.TabPane
+import javafx.scene.control.Tab
+import mpcode.app.ui.EventListView
 
 class MainApp : Application() {
     override fun start(stage: Stage) {
@@ -78,11 +81,18 @@ class MainApp : Application() {
             add(Label("Event capacity"), 0, 3); add(eventCapField, 1, 3)
         }
 
-        val root = VBox(10.0, Label("Event Planner JVM"), grid, createBtn, findBtn, status).apply {
+        // Build a concrete root for the "Actions" tab (grid + buttons + status)
+        val actionsRoot = VBox(12.0, grid, createBtn, findBtn, status).apply {
             padding = Insets(12.0)
         }
+
+        val tabs = TabPane().apply {
+            tabs.add(Tab("Actions", actionsRoot).apply { isClosable = false })
+            tabs.add(Tab("Events", EventListView()).apply { isClosable = false })
+        }
+
+        stage.scene = Scene(tabs, 640.0, 420.0)
         stage.title = "Event Planner JVM"
-        stage.scene = Scene(root, 560.0, 360.0)
         stage.show()
     }
 }
