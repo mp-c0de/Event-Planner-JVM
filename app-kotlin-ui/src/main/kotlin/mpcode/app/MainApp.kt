@@ -15,6 +15,7 @@ import java.time.Instant
 import java.util.UUID
 import javafx.scene.control.TabPane
 import javafx.scene.control.Tab
+import mpcode.app.ui.CreateEventForm
 import mpcode.app.ui.EventListView
 
 class MainApp : Application() {
@@ -89,6 +90,7 @@ class MainApp : Application() {
         val tabs = TabPane().apply {
             tabs.add(Tab("Actions", actionsRoot).apply { isClosable = false })
             tabs.add(Tab("Events", EventListView()).apply { isClosable = false })
+            tabs.add(Tab("Create Event", CreateEventForm()).apply { isClosable = false })
         }
 
         stage.scene = Scene(tabs, 640.0, 420.0)
