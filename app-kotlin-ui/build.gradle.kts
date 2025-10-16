@@ -18,6 +18,10 @@ application {
     mainClass.set("mpcode.app.MainAppKt")
 }
 
+tasks.named<JavaExec>("run") {
+    workingDir = rootProject.projectDir
+}
+
 javafx {
     version = "21"
     modules("javafx.controls", "javafx.fxml")
