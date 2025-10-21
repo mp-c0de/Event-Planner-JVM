@@ -3,17 +3,17 @@ package mpcode.app.ui
 import javafx.geometry.Insets
 import javafx.scene.control.*
 import javafx.scene.layout.*
+import mpcode.app.RepositoryManager
 import mpcode.domain.Event
 import mpcode.domain.Venue
-import mpcode.persistence.FileEventRepository
-import java.nio.file.Paths
 import java.time.Instant
 
 class CreateEventForm : VBox(10.0) {
-    private val repo = FileEventRepository(Paths.get("data"))
+    private val repo = RepositoryManager.eventRepository
 
     private val titleField = TextField()
     private val venueName  = TextField("Main Hall")
+    private val venueLocation = TextField("Building A")
     private val capacity   = TextField("100")
     private val startSec   = TextField("3600")  // seconds from now
     private val duration   = TextField("3600")  // seconds
@@ -23,6 +23,7 @@ class CreateEventForm : VBox(10.0) {
         children.addAll(
             grid("Title:", titleField),
             grid("Venue name:", venueName),
+            grid("Venue location:", venueLocation),
             grid("Venue capacity:", capacity),
             grid("Start in secs (from now):", startSec),
             grid("Duration secs:", duration),
@@ -33,6 +34,7 @@ class CreateEventForm : VBox(10.0) {
     private fun onCreate() {
         val t = titleField.text.trim()
         val vn = venueName.text.trim()
+        val vl = venueLocation.text.trim()
         val cap = capacity.text.toIntOrNull()
         val startOffset = startSec.text.toLongOrNull()
         val dur = duration.text.toLongOrNull()
@@ -40,6 +42,7 @@ class CreateEventForm : VBox(10.0) {
         val errors = buildList {
             if (t.isEmpty()) add("Title is required")
             if (vn.isEmpty()) add("Venue name is required")
+            if (vl.isEmpty()) add("Venue location is required")
             if (cap == null || cap <= 0) add("Venue capacity must be positive")
             if (startOffset == null || startOffset < 0) add("Start offset must be >= 0")
             if (dur == null || dur <= 0) add("Duration must be > 0")
@@ -49,12 +52,12 @@ class CreateEventForm : VBox(10.0) {
             return
         }
 
-        if (!Dialogs.confirm("Create event “$t”?")) return
+        if (!Dialogs.confirm("Create event '$t'?")) return
 
         val now = Instant.now()
-        val venue = Venue(id = "v1", name = vn, capacity = cap!!)
+        val venue = Venue(id = "v-${java.util.UUID.randomUUID()}", name = vn, location = vl, capacity = cap!!)
         val evt = Event(
-            id = java.util.UUID.randomUUID().toString(),
+            id = "e-${java.util.UUID.randomUUID()}",
             title = t,
             venue = venue,
             start = now.plusSeconds(startOffset!!),

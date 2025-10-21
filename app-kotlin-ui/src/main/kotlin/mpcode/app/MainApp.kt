@@ -8,9 +8,7 @@ import javafx.scene.layout.GridPane
 import javafx.scene.layout.VBox
 import javafx.stage.Stage
 import mpcode.domain.*
-import mpcode.persistence.FileEventRepository
 import mpcode.algo.SlotFinderApi
-import java.nio.file.Paths
 import java.time.Instant
 import java.util.UUID
 import javafx.scene.control.TabPane
@@ -20,7 +18,7 @@ import mpcode.app.ui.EventListView
 
 class MainApp : Application() {
     override fun start(stage: Stage) {
-        val repo = FileEventRepository(Paths.get("data"))
+        val repo = RepositoryManager.eventRepository
         val api  = SlotFinderApi()
 
         val titleField = TextField().apply { promptText = "Event title" }
@@ -49,7 +47,7 @@ class MainApp : Application() {
                     return@setOnAction
                 }
 
-                val venue = Venue(id = "v-${UUID.randomUUID()}", name = vName, capacity = venueCapacity)
+                val venue = Venue(id = "v-${UUID.randomUUID()}", name = vName, location = "Default Location", capacity = venueCapacity)
                 val now = Instant.now()
                 val evt = Event(
                     id = UUID.randomUUID().toString(),
@@ -67,7 +65,7 @@ class MainApp : Application() {
         val findBtn = Button("Find first available (Scala)").apply {
             setOnAction {
                 val vName = venueNameField.text.ifBlank { "Main Hall" }
-                val venue = Venue(id = "v1", name = vName, capacity = venueCapField.text.toIntOrNull() ?: 100)
+                val venue = Venue(id = "v1", name = vName, location = "Default Location", capacity = venueCapField.text.toIntOrNull() ?: 100)
                 val existing = repo.findAll()
                 val slot = api.findFirstAvailableSlot(existing, venue, Instant.now().plusSeconds(10 * 60), 60)
                 status.text = "First available: ${slot[0]} → ${slot[1]}"

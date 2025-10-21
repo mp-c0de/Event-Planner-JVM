@@ -3,13 +3,12 @@ package mpcode.app.ui
 import javafx.geometry.Insets
 import javafx.scene.control.*
 import javafx.scene.layout.*
+import mpcode.app.RepositoryManager
 import mpcode.domain.Event
-import mpcode.persistence.FileEventRepository
-import java.nio.file.Paths
 import java.time.format.DateTimeFormatter
 
 class EventListView : VBox(10.0) {
-    private val repo = FileEventRepository(Paths.get("data"))
+    private val repo = RepositoryManager.eventRepository
     private val list = ListView<String>()
     private val info = Label("")
 

@@ -10,7 +10,7 @@ class SlotFinderApiTest:
   @Test
   def movesStartAfterOverlap(): Unit =
     val api = new SlotFinderApi()
-    val venue = new Venue("v1", "Main", 100)
+    val venue = new Venue("v1", "Main", "Building A", 100)
 
     val e1Start = Instant.parse("2025-01-01T10:00:00Z")
     val e1End   = Instant.parse("2025-01-01T11:00:00Z")
