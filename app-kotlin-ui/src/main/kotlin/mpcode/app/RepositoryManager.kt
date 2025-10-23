@@ -1,6 +1,8 @@
 package mpcode.app
 
 import mpcode.persistence.FileEventRepository
+import mpcode.persistence.FileParticipantRepository
+import mpcode.persistence.FileRegistrationRepository
 import java.nio.file.Paths
 
 /**
@@ -13,4 +15,13 @@ object RepositoryManager {
     val eventRepository: FileEventRepository by lazy {
         FileEventRepository(dataPath)
     }
+
+    val participantRepository: FileParticipantRepository by lazy {
+        FileParticipantRepository(dataPath)
+    }
+
+    val registrationRepository: FileRegistrationRepository by lazy {
+        FileRegistrationRepository(dataPath)
+    }
 }
+

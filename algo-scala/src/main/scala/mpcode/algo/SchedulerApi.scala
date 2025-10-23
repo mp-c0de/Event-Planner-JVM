@@ -33,4 +33,15 @@ object SchedulerApi {
         }
         clash
     }
+
+    /** Shifts to next available start time if there's overlap */
+    def shiftToNextFreeStart(
+        existing: JList[Event],
+        venue: Venue,
+        desiredStart: Instant,
+        durationMinutes: Int
+    ): Instant = {
+        val slot = new SlotFinderApi().findFirstAvailableSlot(existing, venue, desiredStart, durationMinutes)
+        slot(0)
+    }
 }

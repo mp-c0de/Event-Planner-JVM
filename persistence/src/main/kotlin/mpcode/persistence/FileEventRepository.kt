@@ -61,7 +61,7 @@ class FileEventRepository(dataDir: Path) : EventRepository {
     // --- Week 2 additions ----------------------------------------------------
 
     /** Replace existing event (by id). Returns true if an event was updated. */
-    fun update(event: Event): Boolean {
+    override fun update(event: Event): Boolean {
         require(event.start.isBefore(event.end)) { "start must be before end" }
         val all = readAll().toMutableList()
         val idx = all.indexOfFirst { it.id == event.id }
@@ -72,7 +72,7 @@ class FileEventRepository(dataDir: Path) : EventRepository {
     }
 
     /** Delete by id. Returns true if something was removed. */
-    fun deleteById(id: EventId): Boolean {
+    override fun deleteById(id: EventId): Boolean {
         val before = readAll()
         val after = before.filterNot { it.id == id }
         if (after.size == before.size) return false
@@ -84,7 +84,7 @@ class FileEventRepository(dataDir: Path) : EventRepository {
      * Find events at a venue that overlap the [start, end) window.
      * Overlap rule: event.start < end && event.end > start
      */
-    fun findByVenueBetween(
+    override fun findByVenueBetween(
         venueId: String,
         start: Instant,
         end: Instant
@@ -98,3 +98,4 @@ class FileEventRepository(dataDir: Path) : EventRepository {
             .toList()
     }
 }
+
