@@ -11,23 +11,57 @@ import java.time.Instant
 class CreateEventForm : VBox(10.0) {
     private val repo = RepositoryManager.eventRepository
 
-    private val titleField = TextField()
-    private val venueName  = TextField("Main Hall")
-    private val venueLocation = TextField("Building A")
-    private val capacity   = TextField("100")
-    private val startSec   = TextField("3600")  // seconds from now
-    private val duration   = TextField("3600")  // seconds
+    private val titleField = TextField().apply {
+        promptText = "Enter event title"
+    }
+    private val venueName = TextField().apply {
+        text = "Main Hall"
+        promptText = "Enter venue name"
+    }
+    private val venueLocation = TextField().apply {
+        text = "Building A"
+        promptText = "Enter venue location"
+    }
+    private val capacity = TextField().apply {
+        text = "100"
+        promptText = "Enter capacity (number)"
+    }
+    private val startSec = TextField().apply {
+        text = "3600"
+        promptText = "Seconds from now (e.g. 3600 = 1 hour)"
+    }
+    private val duration = TextField().apply {
+        text = "3600"
+        promptText = "Duration in seconds (e.g. 3600 = 1 hour)"
+    }
 
     init {
-        padding = Insets(12.0)
+        padding = Insets(16.0)
+
+        val formTitle = Label("Create New Event").apply {
+            style = "-fx-font-size: 16px; -fx-font-weight: bold;"
+        }
+
         children.addAll(
-            grid("Title:", titleField),
-            grid("Venue name:", venueName),
-            grid("Venue location:", venueLocation),
-            grid("Venue capacity:", capacity),
-            grid("Start in secs (from now):", startSec),
-            grid("Duration secs:", duration),
-            HBox(10.0, Button("Create").apply { setOnAction { onCreate() } })
+            formTitle,
+            Separator(),
+            grid("Event Title:", titleField),
+            grid("Venue Name:", venueName),
+            grid("Venue Location:", venueLocation),
+            grid("Venue Capacity:", capacity),
+            grid("Start Time (seconds from now):", startSec),
+            grid("Duration (seconds):", duration),
+            Separator(),
+            HBox(10.0).apply {
+                val createBtn = Button("Create Event").apply {
+                    setOnAction { onCreate() }
+                    style = "-fx-base: #4CAF50;"
+                }
+                val clearBtn = Button("Clear Form").apply {
+                    setOnAction { clearForm() }
+                }
+                children.addAll(createBtn, clearBtn)
+            }
         )
     }
 
@@ -65,13 +99,29 @@ class CreateEventForm : VBox(10.0) {
             capacity = cap
         )
         repo.save(evt)
-        Dialogs.info("Saved: ${evt.title} at ${evt.venue.name}")
+        Dialogs.info("Event created successfully!\n\n${evt.title}\n${evt.venue.name} (${evt.venue.location})")
+        clearForm()
+    }
+
+    private fun clearForm() {
+        titleField.clear()
+        venueName.text = "Main Hall"
+        venueLocation.text = "Building A"
+        capacity.text = "100"
+        startSec.text = "3600"
+        duration.text = "3600"
+        titleField.requestFocus()
     }
 
     private fun grid(label: String, field: Control): GridPane = GridPane().apply {
-        hgap = 8.0; vgap = 6.0; padding = Insets(0.0)
+        hgap = 10.0; vgap = 8.0; padding = Insets(4.0, 0.0, 4.0, 0.0)
         addRow(0, Label(label), field)
-        ColumnConstraints().apply { percentWidth = 30.0 }.also { columnConstraints.add(it) }
-        ColumnConstraints().apply { percentWidth = 70.0 }.also { columnConstraints.add(it) }
+        ColumnConstraints().apply {
+            minWidth = 200.0
+            prefWidth = 200.0
+        }.also { columnConstraints.add(it) }
+        ColumnConstraints().apply {
+            hgrow = Priority.ALWAYS
+        }.also { columnConstraints.add(it) }
     }
 }
