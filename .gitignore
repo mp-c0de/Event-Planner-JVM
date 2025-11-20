@@ -21,3 +21,16 @@ replay_pid*
 
 # OS
 .DS_Store
+._*
+.AppleDouble
+
+# Submissions and coursework files
+*.zip
+*.pdf
+*.docx
+*.pptx
+
+# Backup files
+*.backup
+*.old
+*.bak
