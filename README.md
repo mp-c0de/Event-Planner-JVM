@@ -7,11 +7,11 @@
 
 ---
 
-## 📋 Overview
+## Overview
 
 A multi-module event planning application demonstrating **polyglot JVM development** with Kotlin, Scala 3, and JavaFX. The application provides a graphical interface for managing events and venues with intelligent slot-finding algorithms.
 
-### ✨ Key Features
+### Key Features
 
 - **Multi-language Architecture** - Kotlin (UI & Domain), Scala 3 (Algorithms)
 - **JavaFX 21 GUI** - Modern desktop interface
@@ -22,7 +22,7 @@ A multi-module event planning application demonstrating **polyglot JVM developme
 
 ---
 
-## 🛠️ Technical Stack
+## Technical Stack
 
 - **Languages:** Kotlin, Scala 3 LTS, Java
 - **GUI Framework:** JavaFX 21
@@ -32,7 +32,7 @@ A multi-module event planning application demonstrating **polyglot JVM developme
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 event-planner-jvm/
@@ -50,7 +50,7 @@ event-planner-jvm/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -83,7 +83,7 @@ event-planner-jvm/
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### Module Dependencies
 
@@ -101,7 +101,7 @@ app-kotlin-ui  →  algo-scala  →  domain
 
 ---
 
-## 🎓 Learning Outcomes
+## Learning Outcomes
 
 This project demonstrates:
 
@@ -114,7 +114,7 @@ This project demonstrates:
 
 ---
 
-## 🧪 Module Descriptions
+## Module Descriptions
 
 ### `domain`
 Kotlin data classes representing the core domain model:
@@ -142,7 +142,38 @@ JavaFX desktop application in Kotlin:
 
 ---
 
-## 📝 Development Notes
+## Development Workflow (Azure DevOps)
+
+This project was developed on **Azure DevOps** using a full Agile Git workflow with a team of 4 contributors. The GitHub repository contains the final codebase, while the complete development history (23 merged Pull Requests, feature branches, code reviews) lives on Azure DevOps.
+
+### Commit History and Pull Requests
+
+The team followed a structured PR-based workflow with conventional commit messages (`feat:`, `fix:`, `docs:`, `chore:`), code reviews, and a `develop` to `main` branching strategy.
+
+**23 merged Pull Requests** spanning 8 weeks of development (Oct -- Nov 2025):
+
+![Commit History - Part 1](docs/azure-devops/commits-history-1.png)
+
+![Commit History - Part 2](docs/azure-devops/commits-history-2.png)
+
+### Branching Strategy
+
+Used `main` + `develop` + feature branches per developer:
+
+![Branches](docs/azure-devops/branches.png)
+
+### Development Timeline
+
+| Week | PRs | Key Milestones |
+|------|-----|---------------|
+| Week 1 (Oct 5-11) | PR 1-9 | Project setup, domain model, persistence layer, Kotlin/Scala interop |
+| Week 2 (Oct 12-24) | PR 10-14 | UI development, event creation, registration views, capacity validation |
+| Week 3 (Oct 25 - Nov 7) | PR 15-17 | Schedule generator, Gradle fixes, Scala algorithm integration |
+| Week 4 (Nov 8-30) | PR 18-23 | Documentation, date formatting, UI polish, delete functionality |
+
+---
+
+## Development Notes
 
 ### Tested Environment
 - **OS:** macOS Sequoia
@@ -154,33 +185,27 @@ JavaFX desktop application in Kotlin:
 - Basic UI with two main buttons
 - No authentication or user management
 
-### Future Enhancements
-- Add database persistence (PostgreSQL/SQLite)
-- Implement REST API layer
-- Add comprehensive test suite
-- Enhance UI with more features
-- Add CI/CD pipeline
+---
+
+## Team
+
+This was a collaborative group project (Group 30) developed as part of COMP1815 coursework with 4 contributors working on Azure DevOps.
 
 ---
 
-## 👥 Group Members
-
-This was a collaborative group project developed as part of COMP1815 coursework.
-
----
-
-## 📄 License
+## License
 
 This project was created for academic purposes as part of university coursework.
 
 ---
 
-## 👤 Author
+## Author
 
 **Martynas Prascevicius**
-📧 Email: mpcode@icloud.com
-💼 LinkedIn: [linkedin.com/in/mpc0de](https://linkedin.com/in/mpc0de)
-🐙 GitHub: [github.com/mp-c0de](https://github.com/mp-c0de)
+- Email: mpcode@mpcode.dev
+- Website: [mpcode.dev](https://mpcode.dev/)
+- LinkedIn: [linkedin.com/in/mpc0de](https://linkedin.com/in/mpc0de)
+- GitHub: [github.com/mp-c0de](https://github.com/mp-c0de)
 
 ---
 
